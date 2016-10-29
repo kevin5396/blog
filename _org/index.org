@@ -1,0 +1,4 @@
+#+TITLE: Posts
+
+   + [[file:post/org-style-test.org][Oct 29, 2016  Org Style Test]]
+   + [[file:post/faster-fibonacci.org][Sep 21, 2016  Compute fibonacci number in log n steps]]
