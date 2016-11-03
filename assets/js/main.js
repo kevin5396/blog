@@ -1,11 +1,21 @@
 var entries = document.querySelectorAll("a[href^='post'");
 var date, title;
 
+function trim(s){ 
+  return ( s || '' ).replace( /^\s+|\s+$/g, '' ); 
+}
+
 for (var i = 0, l = entries.length; i < l; i++) {
 	var entry = entries[i];
-	date = entry.innerText.substr(0, 12);
-	title = entry.innerText.substr(13);
-	entry.innerHTML = "<span class='post-date'>" + date + "</span><span class='post-link'>" + title + "</span>";
+	date = trim(entry.innerText.substr(0, 12));
+    if (date[5] == ',') {
+        console.log(date[5]);
+        date = date.slice(0, 4) + ' ' + date.slice(4);
+        console.log(date[5]);
+    }
+    console.log(date);
+	title = trim(entry.innerText.substr(12));
+ 	entry.innerHTML = "<span class='post-date'>" + date + "</span><span class='post-link'>" + title + "</span>";
 }
 
 function loadjscssfile(filename, filetype){
