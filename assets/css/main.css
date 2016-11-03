@@ -100,6 +100,12 @@ blockquote {
       max-width: calc(840px - (30px));
       padding-right: 15px;
       padding-left: 15px; } }
+  @media screen and (max-width: 800px) {
+    .wrapper {
+      max-width: -webkit-calc(840px - (30px));
+      max-width: calc(840px - (30px));
+      padding-right: 15px;
+      padding-left: 15px; } }
 
 /**
  * Clearfix
@@ -263,7 +269,8 @@ blockquote {
  * Page content
  */
 #page-content {
-  padding: 30px 0; 
+  padding-top: 20px;
+  padding-bottom: 20px; 
 }
 
 .page-heading {
