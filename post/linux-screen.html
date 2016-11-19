@@ -4,9 +4,11 @@
 <!-- 2016-11-19 -->
 <meta  charset="utf-8">
 <meta  name="viewport" content="width=device-width, initial-scale=1">
-<title>Posts</title>
+<title>Keep process running via Screen</title>
 <meta  name="generator" content="Org-mode">
-<meta  name="author" content="kevin5396">
+<meta  name="author" content="Kangwei Ling">
+<meta  name="description" content="screen"
+>
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -164,15 +166,110 @@ for the JavaScript code in this tag.
 </header>
 <main id="page-content">
 <header>
-<h1 class="title">Posts</h1>
-</header><ul class="org-ul">
-<li><a href="post/linux-screen.html">Nov 19, 2016  Keep process running via Screen</a></li>
-<li><a href="post/csapp-cachelab.html">Nov  3, 2016  CSAPP-Cachelab</a></li>
-<li><a href="post/org-style-test.html">Oct 29, 2016  Org Style Test</a></li>
-<li><a href="post/faster-fibonacci.html">Sep 21, 2016  Compute fibonacci number in log n steps</a></li>
-</ul>
+<h1 class="title">Keep process running via Screen</h1>
+</header><p>
+Recently I've been trying to train a neural network for machine translation
+(<a href="https:github.com/rsennrich/nematus">nematus</a>) using the linux machine of the laboratory via ssh shell. But it keeps
+annoying me that each time I close the ssh connection, the training process
+terminates. As the training process is initiated from ssh shell, it is a child
+process that will be terminates when the parent process terminates (I exit the
+ssh shell).
+</p>
+
+<p>
+The recommended way is to use <code>screen</code>, which it can create processes in
+different process groups, thereby keep the processes running even if you
+disconnect from ssh session.
+</p>
+
+<section id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Installation</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<p>
+On Ubuntu:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">sudo apt-get install screen
+</pre>
+</div>
+<p>
+will install <code>screen</code>. Other Linux distributions can use their package managers
+instead.
+</p>
+</div>
+</section>
+
+<section id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Simple usage</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+<p>
+On normal shell session, <code>~$screen</code> will open up the Screen Manager, then press
+the key <code>SPACE</code> or <code>RETURN</code> will start a screen window. A screen window is just
+like a shell, however, you can attach or detach to it without killing the
+session.
+</p>
+
+<p>
+In a screen window, type the usual command to start the process, then <code>C-a d</code>
+(<code>C</code> stands for Control Key) will detach you from the current screen window session (send you back to the
+original shell).
+</p>
+
+<p>
+The command <code>$screen -ls</code> can list all screen windows, and use <code>$screen -r
+name-of-window</code> to reattach to that window, e.g.:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">$ screen -ls
+There are screens on:
+  <span class="org-highlight-numbers-number">835.pts-22.mercury</span>  <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-highlight-numbers-number">11/19/16</span> <span class="org-highlight-numbers-number">19:15:27</span><span class="org-rainbow-delimiters-depth-1">)</span> <span class="org-rainbow-delimiters-depth-1">(</span>Detached<span class="org-rainbow-delimiters-depth-1">)</span>
+  <span class="org-highlight-numbers-number">11375.pts-22.mercury</span>  <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-highlight-numbers-number">11/19/16</span> <span class="org-highlight-numbers-number">16:32:05</span><span class="org-rainbow-delimiters-depth-1">)</span> <span class="org-rainbow-delimiters-depth-1">(</span>Detached<span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-highlight-numbers-number">2</span> Sockets<span class="org-keyword"> in</span> /var/run/screen/S-linkw.
+
+$ screen -r <span class="org-highlight-numbers-number">835.pts-22.mercury</span>
+</pre>
+</div>
+<p>
+To kill a screen session, just hit <code>C-a k</code>, or <code>C-a</code> then enter <code>:quit</code> if you
+are in an attached window. Also, 
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">$ screen -X -S <span class="org-rainbow-delimiters-depth-1">[</span>session <span class="org-comment-delimiter"># </span><span class="org-comment">you want to kill] quit</span>
+</pre>
+</div>
+<p>
+works.
+</p>
+
+<p>
+For more usages, use <code>$man screen</code> to see man page. A full manual can be found
+at <a href="https://www.gnu.org/software/screen/manual/">GNU Screen</a>.
+</p>
+</div>
+</section>
 </main>
 <div id="postamble" class="status">
+<div class="wrapper">
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+ // required: replace example with your forum shortname
+ var disqus_shortname = 'kevin5396blog';
+ (function() {
+     var dsq = document.createElement('script');
+     dsq.type = 'text/javascript'; dsq.async = true;
+     dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+     (document.getElementsByTagName('head')[0] ||
+      document.getElementsByTagName('body')[0]).appendChild(dsq);
+ })();
+</script>
+<noscript>
+    <p>Please enable JavaScript to view the
+    <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></p>
+</noscript>
+</div>
 <footer class="site-footer">
 <div class="wrapper">
         <div class="footer-col-1 column">
