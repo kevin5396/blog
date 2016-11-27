@@ -114,18 +114,16 @@ iframe {
   margin: 0 auto;
   padding-right: 4px;
   padding-left: 4px; }
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 768px) {
+    #page-content {
+      width:  90%;
+    }
     .wrapper {
       max-width: -webkit-calc(840px - (30px));
       max-width: calc(840px - (30px));
       padding-right: 15px;
-      padding-left: 15px; } }
-  @media screen and (max-width: 800px) {
-    .wrapper {
-      max-width: -webkit-calc(840px - (30px));
-      max-width: calc(840px - (30px));
-      padding-right: 15px;
-      padding-left: 15px; } }
+      padding-left: 15px; } 
+    }
 
 /**
  * Clearfix
@@ -329,9 +327,6 @@ iframe {
   transition: .3s;
 }
 
-.post-link:hover {
-    color: #a5573e;
-}
 
 .post-tag a {
   color: #828282; }

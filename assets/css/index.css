@@ -1,6 +1,5 @@
 .org-ul li {
-	  list-style: none;
-    margin-bottom: 1em;
+	list-style: none;
 }
 
 ul.org-ul {
@@ -8,6 +7,9 @@ ul.org-ul {
     margin: 0 auto;
 }
 
+h1.title {
+    margin-top: 0 !important;
+}
 
 
 .post-link {
@@ -20,6 +22,32 @@ span.post-date {
     font-size: .8em;
 	  line-height: 1em;
     margin-bottom: .2em;
+}
+
+div.post-entry{
+    border-top: 1px solid #ddd;
+}
+
+.org-ul li:last-child a .post-entry {
+    border-bottom: 1px solid #ddd;
+}
+
+.post-entry {
+    padding: 15px 30px;
+    border-left:  3px solid #35aadc;
+    transition: border-width .2s ease;
+    border-right: 1px solid #ddd;
+}
+
+.post-entry:hover {
+    border-left-width: 5px;
+    background: #ecf7ff !important;
+}
+
+@media (min-width: 768px) {
+    div.post-entry {
+        border-left:  2px solid #35aadc;
+    }
 }
 
 @media (max-width: 768px) {

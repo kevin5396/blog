@@ -1,4 +1,9 @@
-var entries = document.querySelectorAll("a[href^='post'");
+var entries = [];
+console.log(location.pathname);
+if (location.pathname == "/") {
+    entries = document.querySelectorAll(".org-ul a");
+}
+console.log(entries);
 var date, title;
 
 function trim(s){ 
@@ -11,13 +16,14 @@ for (var i = 0, l = entries.length; i < l; i++) {
 	date = trim(entry.innerText.substr(0, 12));
     if (date[5] == ',') {
         console.log(date[5]);
-        date = date.slice(0, 4) + '&nbsp;' + date.slice(4);
+        date = date.slice(0, 4) + date.slice(4);
         console.log(date[5]);
     }
     console.log(date);
 	title = trim(entry.innerText.substr(12));
- 	entry.innerHTML = "</span><span class='post-link'>" + title + "</span>";
-    li.innerHTML = "<span class='post-date'>" + date + "</span><span class='post-link'>" + li.innerHTML;
+ 	titleHTML = "<div class='post-link'>" + title + "</div>";
+    dateHTML = "<div class='post-date'>" + date + "</div>";
+    entry.innerHTML = "<div class='post-entry'>" + titleHTML + dateHTML + "</div>";
 }
 
 function loadjscssfile(filename, filetype){
