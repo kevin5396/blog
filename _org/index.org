@@ -1,6 +1,0 @@
-#+TITLE: Posts
-
-   + [[file:post/linux-screen.org][Nov 19, 2016  Keep process running via Screen]]
-   + [[file:post/csapp-cachelab.org][Nov  3, 2016  CSAPP-Cachelab]]
-   + [[file:post/org-style-test.org][Oct 29, 2016  Org Style Test]]
-   + [[file:post/faster-fibonacci.org][Sep 21, 2016  Compute fibonacci number in log n steps]]
